@@ -33,6 +33,21 @@ const serviceImages = {
   "ultra-filtration": "/ultrafiltration_plant.png"
 };
 
+import banner1 from '../../banner/3d-illustration-modern-sewage-treatment-plant-water-purification.jpg';
+import banner2 from '../../banner/industrial-tanks-silos-stand-majestically-against-sky-filled-with-dramatic-clouds-reflecting-modern-infrastructure-technology-involved-storage-processing.jpg';
+import banner3 from '../../banner/industrial-wastewater-treatment-plant-purifying-water-before-it-is-discharged.jpg';
+import banner4 from '../../banner/aerial-view-big-sustainable-electric-power-plant-with-many-rows-solar-photovoltaic-panels-producing-clean-electrical-energy-renewable-electricity-with-zero-emission-concept.jpg';
+
+const bannerImages = [banner1, banner2, banner3, banner4];
+
+const bannerStyles = [
+  { opacity: 0.75, filter: 'brightness(1.15)' },
+  { opacity: 0.8, filter: 'brightness(1.25)' },
+  { opacity: 0.75, filter: 'brightness(1.15)' },
+  { opacity: 0.85, filter: 'brightness(1.3) contrast(1.05)' }
+];
+
+
 
 
 import { servicesData } from '../../data/servicesData';
@@ -92,6 +107,15 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  const [currentBanner, setCurrentBanner] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentBanner((prev) => (prev + 1) % bannerImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   const coreServices = servicesData.slice(0, 8);
   const featuredIndustries = industriesData.slice(0, 6);
   const recentBlogs = blogsData.slice(0, 3);
@@ -104,11 +128,30 @@ export default function Home() {
         {/* Background Grid Decoration */}
         <div className="absolute inset-0 bg-[radial-gradient(rgba(11,94,215,0.06)_1.5px,transparent_1.5px)] [background-size:32px_32px] opacity-100 z-0" />
         
-        {/* Background Project Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-45 z-0"
-          style={{ backgroundImage: "url('/hero_water_bg.png')" }}
-        />
+        {/* Background Image Slider */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <AnimatePresence>
+            <motion.div
+              key={currentBanner}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: bannerStyles[currentBanner].opacity }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ 
+                backgroundImage: `url(${bannerImages[currentBanner]})`,
+                filter: bannerStyles[currentBanner].filter
+              }}
+            />
+          </AnimatePresence>
+          {/* Light gradient overlay to ensure text readability on the left, fading to transparent on the right */}
+          <div 
+            className="absolute inset-0" 
+            style={{ 
+              background: 'linear-gradient(to right, rgba(248, 250, 252, 0.95) 0%, rgba(248, 250, 252, 0.8) 35%, transparent 60%)' 
+            }} 
+          />
+        </div>
         
         {/* Subtle Light Gradients Blobs */}
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] pointer-events-none z-0" />
@@ -154,7 +197,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="max-w-3xl flex flex-col gap-6 items-start text-left">
             <motion.span 
-              className="text-xs font-semibold uppercase tracking-widest text-secondary bg-secondary/10 border border-secondary/20 px-3.5 py-1.5 rounded-full inline-block self-start"
+              className="text-xs font-semibold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20 px-3.5 py-1.5 rounded-full inline-block self-start"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -172,7 +215,7 @@ export default function Home() {
             </motion.h1>
 
             <motion.p 
-              className="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl"
+              className="text-slate-700 text-sm md:text-base leading-relaxed max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
