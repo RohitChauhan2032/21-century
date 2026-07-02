@@ -5,34 +5,10 @@ import ReactCountUp from 'react-countup';
 
 const CountUp = ReactCountUp.default || ReactCountUp;
 
-import { 
-  Shield, Activity, Waves, Droplet, Cpu, ArrowRight, CheckCircle2, 
-  MapPin, Clock, Award, Star, HelpCircle, ChevronDown, ChevronRight, Zap, FlaskConical, Network, Users, Globe,
-  ShieldAlert, Compass, Sparkles, Filter
+import {
+  Shield, Activity, Waves, Droplet, Cpu, ArrowRight, CheckCircle2,
+  MapPin, Clock, Award, Star, HelpCircle, ChevronDown, ChevronRight, Zap, FlaskConical, Network, Users, Globe
 } from 'lucide-react';
-
-const iconMap = {
-  Activity,
-  Waves,
-  Droplet,
-  ShieldAlert,
-  Compass,
-  Sparkles,
-  Zap,
-  Filter
-};
-
-const serviceImages = {
-  "effluent-treatment-plant": "/wastewater_plant.png",
-  "sewage-treatment-plant": "/mbr_modules.png",
-  "water-treatment-plant": "/filtration_skid.png",
-  "zero-liquid-discharge": "/fabrication_banner.png",
-  "reverse-osmosis": "/filtration_skid.png",
-  "softening-plant": "/filtration_skid.png",
-  "demineralization-plant": "/sbr_decanter.png",
-  "ultra-filtration": "/mbbr_media.png"
-};
-
 
 import { servicesData } from '../../data/servicesData';
 import { industriesData } from '../../data/industriesData';
@@ -91,109 +67,131 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  const coreServices = servicesData.slice(0, 8);
+  const coreServices = servicesData.slice(0, 4);
   const featuredIndustries = industriesData.slice(0, 6);
   const recentBlogs = blogsData.slice(0, 3);
 
   return (
     <div className="bg-bg-base min-h-screen relative overflow-hidden">
-      
+
       {/* Hero Section */}
-      <section className="min-h-[90vh] relative flex items-center justify-center pt-32 pb-24 px-6 md:px-12 bg-slate-50 text-slate-800 overflow-hidden">
+      <section className="min-h-screen relative flex items-center justify-center pt-24 pb-16 px-6 md:px-12 bg-slate-50 text-slate-800">
         {/* Background Grid Decoration */}
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(11,94,215,0.06)_1.5px,transparent_1.5px)] [background-size:32px_32px] opacity-100 z-0" />
-        
-        {/* Subtle Light Gradients Blobs */}
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] pointer-events-none z-0" />
-        <div className="absolute -bottom-45 -right-45 w-[700px] h-[700px] rounded-full bg-secondary/5 blur-[140px] pointer-events-none z-0" />
-        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-indigo-600/5 blur-[100px] pointer-events-none z-0" />
-
-        {/* High-Tech Flow Graphic SVG */}
-        <div className="absolute inset-0 z-0 opacity-15 pointer-events-none flex items-center justify-center">
-          <svg viewBox="0 0 1000 1000" fill="none" className="w-full h-full max-w-5xl">
-            <circle cx="500" cy="500" r="380" stroke="url(#cyan-grad)" strokeWidth="1" strokeDasharray="8 6" className="animate-spin" style={{ animationDuration: '120s' }} />
-            <circle cx="500" cy="500" r="280" stroke="url(#blue-grad)" strokeWidth="1.5" strokeDasharray="4 4" className="animate-spin" style={{ animationDuration: '80s', animationDirection: 'reverse' }} />
-            <circle cx="500" cy="500" r="180" stroke="url(#green-grad)" strokeWidth="2" />
-            
-            {/* Flow paths */}
-            <path d="M100,500 Q300,300 500,500 T900,500" stroke="url(#blue-grad)" strokeWidth="2.5" strokeLinecap="round" />
-            <path d="M100,500 Q300,700 500,500 T900,500" stroke="url(#green-grad)" strokeWidth="2" strokeLinecap="round" />
-            
-            {/* Pulsing molecules / node nodes */}
-            <circle cx="300" cy="400" r="8" fill="#0B5ED7" className="animate-ping" style={{ animationDuration: '3s' }} />
-            <circle cx="700" cy="600" r="6" fill="#22C55E" className="animate-ping" style={{ animationDuration: '4s' }} />
-            <circle cx="500" cy="500" r="10" fill="#0B5ED7" />
-            <circle cx="500" cy="500" r="16" stroke="#0B5ED7" strokeWidth="1" className="animate-ping" style={{ animationDuration: '2s' }} />
-
-            <defs>
-              <linearGradient id="blue-grad" x1="0" y1="0" x2="1" y2="1">
-                <stop stopColor="#0B5ED7" stopOpacity="0.8" />
-                <stop stopColor="#3c82e6" stopOpacity="0.1" />
-              </linearGradient>
-              <linearGradient id="green-grad" x1="0" y1="0" x2="1" y2="1">
-                <stop stopColor="#22C55E" stopOpacity="0.8" />
-                <stop stopColor="#16A34A" stopOpacity="0.1" />
-              </linearGradient>
-              <linearGradient id="cyan-grad" x1="0" y1="0" x2="1" y2="1">
-                <stop stopColor="#06b6d4" stopOpacity="0.6" />
-                <stop stopColor="#0891b2" stopOpacity="0.05" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
+        <div className="absolute inset-0 bg-[radial-gradient(#0b5ed708_1px,transparent_1px)] [background-size:24px_24px] opacity-40 z-0" />
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg-base to-transparent pointer-events-none z-10" />
 
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6 relative z-10 w-full">
-          <motion.span 
-            className="text-xs font-semibold uppercase tracking-widest text-secondary bg-secondary/10 border border-secondary/20 px-3.5 py-1.5 rounded-full inline-block"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Water & Infrastructure Engineers
-          </motion.span>
-          
-          <motion.h1 
-            className="text-4xl md:text-6xl font-extrabold font-display leading-tight tracking-tight text-slate-900"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            Engineering Sustainable <br />
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Industrial Solutions
-            </span>
-          </motion.h1>
-
-          <motion.p 
-            className="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Innovative environmental engineering delivering Water Treatment, Wastewater Recycling, and Zero Liquid Discharge (ZLD) infrastructure solutions globally.
-          </motion.p>
-
-          <motion.div 
-            className="flex flex-wrap justify-center gap-4 mt-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <Link 
-              to="/services" 
-              className="gradient-bg text-white font-semibold text-xs px-6 py-3.5 rounded-xl shadow-lg shadow-primary/25 hover:brightness-110 transition-all flex items-center gap-1.5"
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 w-full">
+          {/* Hero Left Content (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col gap-6">
+            <motion.span
+              className="text-xs font-semibold uppercase tracking-widest text-secondary bg-secondary/10 border border-secondary/20 px-3.5 py-1.5 rounded-full inline-block self-start"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              Explore Services <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link 
-              to="/contact" 
-              className="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs px-6 py-3.5 rounded-xl transition-colors flex items-center gap-1.5 shadow-sm"
+              Water & Infrastructure Engineers
+            </motion.span>
+
+            <motion.h1
+              className="text-4xl md:text-6xl font-extrabold font-display leading-tight tracking-tight text-slate-900"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Contact Us
-            </Link>
-          </motion.div>
+              Engineering Sustainable <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Industrial Solutions</span>
+            </motion.h1>
+
+            <motion.p
+              className="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Innovative environmental engineering delivering Water Treatment, Wastewater Recycling, and Zero Liquid Discharge (ZLD) infrastructure solutions globally.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-wrap gap-4 mt-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <Link
+                to="/services"
+                className="gradient-bg text-white font-semibold text-xs px-6 py-3.5 rounded-xl shadow-lg shadow-primary/25 hover:brightness-110 transition-all flex items-center gap-1.5"
+              >
+                Explore Services <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/contact"
+                className="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs px-6 py-3.5 rounded-xl transition-colors flex items-center gap-1.5 shadow-sm"
+              >
+                Contact Us
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Hero Right Floating Stats Card Panel (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col gap-6 relative">
+            <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Stat Card 1 */}
+            <motion.div
+              className="glass-panel rounded-2xl p-6 relative border border-slate-200/50 transition-colors self-end w-72 shadow-md"
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="flex gap-4 items-center">
+                <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+                  <Award className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-lg font-display">25+ Years</h3>
+                  <p className="text-[10px] text-slate-500 font-semibold uppercase mt-0.5">Engineering Excellence</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Stat Card 2 */}
+            <motion.div
+              className="glass-panel rounded-2xl p-6 relative border border-slate-200/50 transition-colors w-72 shadow-md"
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="flex gap-4 items-center">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                  <Network className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-lg font-display">500+ Projects</h3>
+                  <p className="text-[10px] text-slate-500 font-semibold uppercase mt-0.5">Plants Commissioned</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Stat Card 3 */}
+            <motion.div
+              className="glass-panel rounded-2xl p-6 relative border border-slate-200/50 transition-colors self-end w-72 shadow-md"
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="flex gap-4 items-center">
+                <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+                  <Users className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-lg font-display">100+ Clients</h3>
+                  <p className="text-[10px] text-slate-500 font-semibold uppercase mt-0.5">Corporate Partnerships</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -222,7 +220,7 @@ export default function Home() {
             <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
               At 21st Century Enviro Engineers, we construct utility and effluent networks for heavy industries, urban hubs, and residential zones. From initial hydrological surveys and detailed P&ID drafting to final site stabilization, we offer single-point EPC turnkey execution.
             </p>
-            <Link 
+            <Link
               to="/about"
               className="text-xs font-bold text-primary flex items-center gap-1 hover:text-secondary transition-colors"
             >
@@ -250,9 +248,9 @@ export default function Home() {
             {/* Card 1 */}
             <div className="bg-white rounded-3xl overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
               <div className="h-48 overflow-hidden relative">
-                <img 
-                  src="/wastewater_plant.png" 
-                  alt="Sewage Treatment Plant" 
+                <img
+                  src="/wastewater_plant.png"
+                  alt="Sewage Treatment Plant"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
@@ -268,8 +266,8 @@ export default function Home() {
                     Engineered municipal and industrial STPs utilizing high-recovery MBR, SBR, and MBBR reactor technologies. Ensuring compliance with strict pollution boards.
                   </p>
                 </div>
-                <Link 
-                  to="/services" 
+                <Link
+                  to="/services"
                   className="text-xs font-bold text-primary hover:text-secondary transition-colors inline-flex items-center gap-1 self-start mt-2"
                 >
                   <span>Learn More</span>
@@ -281,9 +279,9 @@ export default function Home() {
             {/* Card 2 */}
             <div className="bg-white rounded-3xl overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
               <div className="h-48 overflow-hidden relative">
-                <img 
-                  src="/filtration_skid.png" 
-                  alt="Zero Liquid Discharge ETP" 
+                <img
+                  src="/filtration_skid.png"
+                  alt="Zero Liquid Discharge ETP"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4 bg-secondary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
@@ -299,8 +297,8 @@ export default function Home() {
                     Advanced closed-loop effluent recycling setups integrating physico-chemical dosing, high-rejection RO membranes, and vacuum crystallizers.
                   </p>
                 </div>
-                <Link 
-                  to="/services" 
+                <Link
+                  to="/services"
                   className="text-xs font-bold text-primary hover:text-secondary transition-colors inline-flex items-center gap-1 self-start mt-2"
                 >
                   <span>Learn More</span>
@@ -312,7 +310,7 @@ export default function Home() {
             {/* Card 3 - Dark Theme Card for contrast */}
             <div className="bg-slate-900 text-white rounded-3xl p-8 border border-slate-800 shadow-lg flex flex-col justify-between relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-              
+
               <div className="flex flex-col gap-4">
                 <div className="w-10 h-10 rounded-xl bg-primary/20 text-primary-light flex items-center justify-center">
                   <Shield className="w-5 h-5" />
@@ -327,8 +325,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <Link 
-                to="/about" 
+              <Link
+                to="/about"
                 className="bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs px-5 py-3 rounded-xl transition-all self-start flex items-center gap-1.5 shadow-md mt-6"
               >
                 <span>View Quality Audits</span>
@@ -356,9 +354,9 @@ export default function Home() {
             {/* Tech 1 */}
             <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
               <div className="h-44 overflow-hidden relative">
-                <img 
-                  src="/mbbr_media.png" 
-                  alt="MBBR Technology" 
+                <img
+                  src="/mbbr_media.png"
+                  alt="MBBR Technology"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
@@ -374,8 +372,8 @@ export default function Home() {
                     Utilizes specialized floating plastic carrier media designed to maximize active surface area, allowing higher biological load treatment within compact reactor footprints.
                   </p>
                 </div>
-                <Link 
-                  to="/services" 
+                <Link
+                  to="/services"
                   className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
                 >
                   <span>Technical Setup</span>
@@ -387,9 +385,9 @@ export default function Home() {
             {/* Tech 2 */}
             <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
               <div className="h-44 overflow-hidden relative">
-                <img 
-                  src="/mbr_modules.png" 
-                  alt="MBR Technology" 
+                <img
+                  src="/mbr_modules.png"
+                  alt="MBR Technology"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4 bg-secondary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
@@ -405,8 +403,8 @@ export default function Home() {
                     Combines conventional activated sludge processes with membrane ultrafiltration cassettes, producing suspended solid-free high-purity filtrate suitable for direct reuse.
                   </p>
                 </div>
-                <Link 
-                  to="/services" 
+                <Link
+                  to="/services"
                   className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
                 >
                   <span>Technical Setup</span>
@@ -418,9 +416,9 @@ export default function Home() {
             {/* Tech 3 */}
             <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
               <div className="h-44 overflow-hidden relative">
-                <img 
-                  src="/sbr_decanter.png" 
-                  alt="SBR Technology" 
+                <img
+                  src="/sbr_decanter.png"
+                  alt="SBR Technology"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
@@ -436,8 +434,8 @@ export default function Home() {
                     Runs equalization, aeration, settling, and clear decanting sequentially within a single basin structure, optimizing energy consumption and control flexibility.
                   </p>
                 </div>
-                <Link 
-                  to="/services" 
+                <Link
+                  to="/services"
                   className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
                 >
                   <span>Technical Setup</span>
@@ -487,7 +485,7 @@ export default function Home() {
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">Core Divisions</span>
               <h2 className="text-3xl font-bold font-display text-slate-900 mt-2">Process Sizing & Systems</h2>
             </div>
-            <Link 
+            <Link
               to="/services"
               className="text-xs font-bold text-primary flex items-center gap-1 hover:text-secondary transition-colors"
             >
@@ -498,48 +496,35 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {coreServices.map((service, index) => {
-              const IconComponent = iconMap[service.icon] || Droplet;
+              const icons = [Waves, Droplet, Shield, Zap];
+              const IconComponent = icons[index % icons.length];
               return (
-                <div 
+                <div
                   key={service.id}
-                  className="border border-border-base hover:border-slate-300 rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group"
+                  className="border border-border-base hover:border-slate-300 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between h-full group"
                 >
-                  {/* Card Image */}
-                  <div className="h-40 overflow-hidden relative">
-                    <img 
-                      src={serviceImages[service.id] || "/filtration_skid.png"} 
-                      alt={service.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-slate-850 text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm border border-slate-100">
-                      {service.category}
+                  <div className="flex flex-col gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <IconComponent className="w-5 h-5" />
                     </div>
+                    <div>
+                      <span className="text-[9px] font-bold text-slate-400 uppercase">{service.category}</span>
+                      <h3 className="font-bold text-slate-800 text-sm mt-0.5 leading-snug group-hover:text-primary transition-colors">
+                        {service.title}
+                      </h3>
+                    </div>
+                    <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                      {service.shortDesc}
+                    </p>
                   </div>
 
-                  {/* Card Content */}
-                  <div className="p-5 flex flex-col justify-between flex-grow">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                          <IconComponent className="w-4.5 h-4.5" />
-                        </div>
-                        <h3 className="font-bold text-slate-800 text-xs sm:text-sm leading-snug group-hover:text-primary transition-colors">
-                          {service.title}
-                        </h3>
-                      </div>
-                      <p className="text-xs text-slate-500 leading-relaxed font-medium line-clamp-3">
-                        {service.shortDesc}
-                      </p>
-                    </div>
-
-                    <Link 
-                      to={`/services/${service.id}`}
-                      className="text-xs font-bold text-primary flex items-center gap-1.5 mt-6 pt-4 border-t border-slate-100 hover:text-secondary transition-colors"
-                    >
-                      <span>Sizing Specs</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
+                  <Link
+                    to={`/services/${service.id}`}
+                    className="text-xs font-bold text-primary flex items-center gap-1.5 mt-6 pt-4 border-t border-slate-100 hover:text-secondary transition-colors"
+                  >
+                    <span>Sizing Specs</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
               );
             })}
@@ -559,7 +544,7 @@ export default function Home() {
 
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
           {featuredIndustries.map((ind) => (
-            <Link 
+            <Link
               key={ind.id}
               to={`/industries#${ind.id}`}
               className="bg-white rounded-2xl p-5 border border-border-base hover:border-primary shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 group"
@@ -578,12 +563,12 @@ export default function Home() {
       {/* Why Choose Us Full-Width Banner */}
       <section className="relative py-32 px-6 md:px-12 overflow-hidden bg-slate-900 text-white min-h-[500px] flex items-center">
         {/* Background cover image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-65 z-0"
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-30 z-0"
           style={{ backgroundImage: "url('/fabrication_banner.png')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/60 to-slate-900/30 pointer-events-none z-0" />
-        
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent pointer-events-none z-0" />
+
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 w-full">
           <div className="lg:col-span-7 flex flex-col gap-6">
             <span className="text-xs font-semibold uppercase tracking-wider text-secondary">Fabrication Strength</span>
@@ -612,7 +597,7 @@ export default function Home() {
               </li>
             </ul>
           </div>
-          
+
           <div className="lg:col-span-5 bg-white/10 backdrop-blur-md text-slate-200 rounded-3xl p-8 border border-white/10 flex flex-col justify-between h-80 relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
             <h4 className="font-bold text-white text-base font-display">ASME Code Fabrication</h4>
@@ -668,7 +653,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">Verified Trust</span>
           <h2 className="text-3xl font-bold font-display text-slate-900 mt-2 mb-12">Client Appreciations</h2>
-          
+
           <div className="relative min-h-[200px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -694,16 +679,15 @@ export default function Home() {
               </motion.div>
             </AnimatePresence>
           </div>
-          
+
           {/* Slider Dots */}
           <div className="flex justify-center gap-2 mt-8">
             {testimonials.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveTestimonial(idx)}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                  activeTestimonial === idx ? 'bg-primary' : 'bg-slate-300'
-                }`}
+                className={`w-2.5 h-2.5 rounded-full transition-colors ${activeTestimonial === idx ? 'bg-primary' : 'bg-slate-300'
+                  }`}
                 aria-label={`Go to testimonial ${idx + 1}`}
               />
             ))}
@@ -718,7 +702,7 @@ export default function Home() {
             <span className="text-xs font-semibold uppercase tracking-wider text-primary">Insights</span>
             <h2 className="text-3xl font-bold font-display text-slate-900 mt-2">Latest From Our R&D Desk</h2>
           </div>
-          <Link 
+          <Link
             to="/blog"
             className="text-xs font-bold text-primary flex items-center gap-1 hover:text-secondary transition-colors"
           >
@@ -729,7 +713,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {recentBlogs.map((blog) => (
-            <div 
+            <div
               key={blog.id}
               className="bg-white border border-border-base rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between h-full"
             >
@@ -757,7 +741,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-slate-800 text-center mb-10">Frequently Asked Questions</h2>
           <div className="flex flex-col gap-4">
             {homeFaqs.map((faq, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="border border-border-base rounded-2xl overflow-hidden"
               >
