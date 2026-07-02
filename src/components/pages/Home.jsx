@@ -239,112 +239,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Technologies Offered Section (New) */}
+      {/* Services Grid Section */}
       <section className="py-20 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary">Biological Systems</span>
-              <h2 className="text-3xl font-bold font-display text-slate-900 mt-2">Technologies Offered</h2>
+              <span className="text-xs font-semibold uppercase tracking-wider text-primary">Core Divisions</span>
+              <h2 className="text-3xl font-bold font-display text-slate-900 mt-2">Process Sizing & Systems</h2>
             </div>
-            <p className="text-slate-500 text-xs md:text-sm max-w-md font-medium">
-              We integrate patent-driven, high-efficiency biological systems tailored for complex industrial streams and municipal load requirements.
-            </p>
+            <Link
+              to="/services"
+              className="text-xs font-bold text-primary flex items-center gap-1 hover:text-secondary transition-colors"
+            >
+              <span>View All 20 Services</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Tech 1 */}
-            <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
-              <div className="h-44 overflow-hidden relative">
-                <img
-                  src="/mbbr_media.png"
-                  alt="MBBR Technology"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                  Biofilm MBBR
-                </div>
-              </div>
-              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
-                <div className="flex flex-col gap-2">
-                  <h4 className="font-bold text-slate-900 text-sm font-display group-hover:text-primary transition-colors">
-                    MBBR (Moving Bed Bio Reactor)
-                  </h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
-                    Utilizes specialized floating plastic carrier media designed to maximize active surface area, allowing higher biological load treatment within compact reactor footprints.
-                  </p>
-                </div>
-                <Link
-                  to="/services"
-                  className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {coreServices.map((service, index) => {
+              const IconComponent = iconMap[service.icon] || Droplet;
+              return (
+                <div 
+                  key={service.id}
+                  className="border border-border-base hover:border-slate-300 rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group"
                 >
-                  <span>Technical Setup</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-              </div>
-            </div>
+                  {/* Card Image */}
+                  <div className="h-40 overflow-hidden relative">
+                    <img 
+                      src={serviceImages[service.id] || "/filtration_skid.png"} 
+                      alt={service.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-slate-850 text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm border border-slate-100">
+                      {service.category}
+                    </div>
+                  </div>
 
-            {/* Tech 2 */}
-            <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
-              <div className="h-44 overflow-hidden relative">
-                <img
-                  src="/mbr_modules.png"
-                  alt="MBR Technology"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4 bg-secondary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                  Ultrafiltration MBR
-                </div>
-              </div>
-              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
-                <div className="flex flex-col gap-2">
-                  <h4 className="font-bold text-slate-900 text-sm font-display group-hover:text-primary transition-colors">
-                    MBR (Membrane Bio Reactor)
-                  </h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
-                    Combines conventional activated sludge processes with membrane ultrafiltration cassettes, producing suspended solid-free high-purity filtrate suitable for direct reuse.
-                  </p>
-                </div>
-                <Link
-                  to="/services"
-                  className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
-                >
-                  <span>Technical Setup</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-              </div>
-            </div>
+                  {/* Card Content */}
+                  <div className="p-5 flex flex-col justify-between flex-grow">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                          <IconComponent className="w-4.5 h-4.5" />
+                        </div>
+                        <h3 className="font-bold text-slate-800 text-xs sm:text-sm leading-snug group-hover:text-primary transition-colors">
+                          {service.title}
+                        </h3>
+                      </div>
+                      <p className="text-xs text-slate-500 leading-relaxed font-medium line-clamp-3">
+                        {service.shortDesc}
+                      </p>
+                    </div>
 
-            {/* Tech 3 */}
-            <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
-              <div className="h-44 overflow-hidden relative">
-                <img
-                  src="/sbr_decanter.png"
-                  alt="SBR Technology"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                  Batch Dosing SBR
+                    <Link 
+                      to={`/services/${service.id}`}
+                      className="text-xs font-bold text-primary flex items-center gap-1.5 mt-6 pt-4 border-t border-slate-100 hover:text-secondary transition-colors"
+                    >
+                      <span>Sizing Specs</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
-                <div className="flex flex-col gap-2">
-                  <h4 className="font-bold text-slate-900 text-sm font-display group-hover:text-primary transition-colors">
-                    SBR (Sequential Batch Reactor)
-                  </h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
-                    Runs equalization, aeration, settling, and clear decanting sequentially within a single basin structure, optimizing energy consumption and control flexibility.
-                  </p>
-                </div>
-                <Link
-                  to="/services"
-                  className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
-                >
-                  <span>Technical Setup</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -485,70 +443,112 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Grid Section */}
+      {/* Technologies Offered Section (New) */}
       <section className="py-20 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary">Core Divisions</span>
-              <h2 className="text-3xl font-bold font-display text-slate-900 mt-2">Process Sizing & Systems</h2>
+              <span className="text-xs font-semibold uppercase tracking-wider text-primary">Biological Systems</span>
+              <h2 className="text-3xl font-bold font-display text-slate-900 mt-2">Technologies Offered</h2>
             </div>
-            <Link
-              to="/services"
-              className="text-xs font-bold text-primary flex items-center gap-1 hover:text-secondary transition-colors"
-            >
-              <span>View All 20 Services</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            <p className="text-slate-500 text-xs md:text-sm max-w-md font-medium">
+              We integrate patent-driven, high-efficiency biological systems tailored for complex industrial streams and municipal load requirements.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {coreServices.map((service, index) => {
-              const IconComponent = iconMap[service.icon] || Droplet;
-              return (
-                <div 
-                  key={service.id}
-                  className="border border-border-base hover:border-slate-300 rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group"
-                >
-                  {/* Card Image */}
-                  <div className="h-40 overflow-hidden relative">
-                    <img 
-                      src={serviceImages[service.id] || "/filtration_skid.png"} 
-                      alt={service.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-slate-850 text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm border border-slate-100">
-                      {service.category}
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-5 flex flex-col justify-between flex-grow">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                          <IconComponent className="w-4.5 h-4.5" />
-                        </div>
-                        <h3 className="font-bold text-slate-800 text-xs sm:text-sm leading-snug group-hover:text-primary transition-colors">
-                          {service.title}
-                        </h3>
-                      </div>
-                      <p className="text-xs text-slate-500 leading-relaxed font-medium line-clamp-3">
-                        {service.shortDesc}
-                      </p>
-                    </div>
-
-                    <Link 
-                      to={`/services/${service.id}`}
-                      className="text-xs font-bold text-primary flex items-center gap-1.5 mt-6 pt-4 border-t border-slate-100 hover:text-secondary transition-colors"
-                    >
-                      <span>Sizing Specs</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Tech 1 */}
+            <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
+              <div className="h-44 overflow-hidden relative">
+                <img
+                  src="/mbbr_media.png"
+                  alt="MBBR Technology"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                  Biofilm MBBR
                 </div>
-              );
-            })}
+              </div>
+              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
+                <div className="flex flex-col gap-2">
+                  <h4 className="font-bold text-slate-900 text-sm font-display group-hover:text-primary transition-colors">
+                    MBBR (Moving Bed Bio Reactor)
+                  </h4>
+                  <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
+                    Utilizes specialized floating plastic carrier media designed to maximize active surface area, allowing higher biological load treatment within compact reactor footprints.
+                  </p>
+                </div>
+                <Link
+                  to="/services"
+                  className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
+                >
+                  <span>Technical Setup</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Tech 2 */}
+            <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
+              <div className="h-44 overflow-hidden relative">
+                <img
+                  src="/mbr_modules.png"
+                  alt="MBR Technology"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4 bg-secondary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                  Ultrafiltration MBR
+                </div>
+              </div>
+              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
+                <div className="flex flex-col gap-2">
+                  <h4 className="font-bold text-slate-900 text-sm font-display group-hover:text-primary transition-colors">
+                    MBR (Membrane Bio Reactor)
+                  </h4>
+                  <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
+                    Combines conventional activated sludge processes with membrane ultrafiltration cassettes, producing suspended solid-free high-purity filtrate suitable for direct reuse.
+                  </p>
+                </div>
+                <Link
+                  to="/services"
+                  className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
+                >
+                  <span>Technical Setup</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Tech 3 */}
+            <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
+              <div className="h-44 overflow-hidden relative">
+                <img
+                  src="/sbr_decanter.png"
+                  alt="SBR Technology"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                  Batch Dosing SBR
+                </div>
+              </div>
+              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
+                <div className="flex flex-col gap-2">
+                  <h4 className="font-bold text-slate-900 text-sm font-display group-hover:text-primary transition-colors">
+                    SBR (Sequential Batch Reactor)
+                  </h4>
+                  <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
+                    Runs equalization, aeration, settling, and clear decanting sequentially within a single basin structure, optimizing energy consumption and control flexibility.
+                  </p>
+                </div>
+                <Link
+                  to="/services"
+                  className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
+                >
+                  <span>Technical Setup</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
