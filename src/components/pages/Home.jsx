@@ -7,7 +7,7 @@ const CountUp = ReactCountUp.default || ReactCountUp;
 
 import { 
   Shield, Activity, Waves, Droplet, Cpu, ArrowRight, CheckCircle2, 
-  MapPin, Clock, Award, Star, HelpCircle, ChevronDown, ChevronRight, Zap, FlaskConical, Network, Users, Globe,
+  MapPin, Clock, Award, Star, HelpCircle, ChevronDown, ChevronLeft, ChevronRight, Zap, FlaskConical, Network, Users, Globe,
   ShieldAlert, Compass, Sparkles, Filter
 } from 'lucide-react';
 
@@ -46,6 +46,53 @@ const bannerStyles = [
   { opacity: 0.75, filter: 'brightness(1.15)' },
   { opacity: 0.85, filter: 'brightness(1.3) contrast(1.05)' }
 ];
+
+const technologiesData = [
+  {
+    id: "mbbr",
+    title: "MBBR (Moving Bed Bio Reactor)",
+    tag: "Biofilm MBBR",
+    image: "/mbbr_media.png",
+    description: "Utilizes specialized floating plastic carrier media designed to maximize active surface area, allowing higher biological load treatment within compact reactor footprints."
+  },
+  {
+    id: "mbr",
+    title: "MBR (Membrane Bio Reactor)",
+    tag: "Ultrafiltration MBR",
+    image: "/mbr_modules.png",
+    description: "Combines conventional activated sludge processes with membrane ultrafiltration cassettes, producing suspended solid-free high-purity filtrate suitable for direct reuse."
+  },
+  {
+    id: "sbr",
+    title: "SBR (Sequential Batch Reactor)",
+    tag: "Batch Dosing SBR",
+    image: "/sbr_decanter.png",
+    description: "Runs equalization, aeration, settling, and clear decanting sequentially within a single basin structure, optimizing energy consumption and control flexibility."
+  },
+  {
+    id: "saff",
+    title: "SAFF (Submerged Aerobic Fixed Film)",
+    tag: "Fixed Film SAFF",
+    image: "/demineralization_plant.png",
+    description: "Utilizes fixed media to support biological growth under continuous aeration, providing stable nitrification and high organic removal efficiency for medium strength effluents."
+  },
+  {
+    id: "asp",
+    title: "ASP (Activated Sludge Process)",
+    tag: "Suspended Growth ASP",
+    image: "/wastewater_plant.png",
+    description: "The classic wastewater treatment utilizing aeration and suspended biological floc to degrade organic matter, followed by sedimentation in secondary clarifiers."
+  },
+  {
+    id: "fab",
+    title: "FAB (Fluidised Aerobic Bio Reactor)",
+    tag: "Fluidized Bed FAB",
+    image: "/filtration_skid.png",
+    description: "Integrates suspended and attached growth by keeping biomass support media fluidized under intensive aeration, boosting overall reactor efficiency and load handling."
+  }
+];
+
+const loopedData = [...technologiesData, ...technologiesData, ...technologiesData];
 
 
 
@@ -115,6 +162,71 @@ export default function Home() {
     }, 4000);
     return () => clearInterval(timer);
   }, []);
+
+  const [currentTech, setCurrentTech] = useState(6); // Start at index 6 (middle copy)
+  const [visibleItems, setVisibleItems] = useState(3);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      let items = 3;
+      if (window.innerWidth >= 1024) {
+        items = 3;
+      } else if (window.innerWidth >= 768) {
+        items = 2;
+      } else {
+        items = 1;
+      }
+      setVisibleItems(items);
+      setCurrentTech((prev) => {
+        const realLength = technologiesData.length;
+        const offset = prev % realLength;
+        return realLength + offset;
+      });
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setCurrentTech((prev) => prev + 1);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isHovered]);
+
+  useEffect(() => {
+    if (!isTransitioning) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(true);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isTransitioning]);
+
+  const nextTech = () => {
+    if (!isTransitioning) return;
+    setCurrentTech((prev) => prev + 1);
+  };
+
+  const prevTech = () => {
+    if (!isTransitioning) return;
+    setCurrentTech((prev) => prev - 1);
+  };
+
+  const handleTransitionEnd = () => {
+    const realLength = technologiesData.length;
+    if (currentTech >= realLength * 2) {
+      setIsTransitioning(false);
+      setCurrentTech((prev) => prev - realLength);
+    } else if (currentTech < realLength) {
+      setIsTransitioning(false);
+      setCurrentTech((prev) => prev + realLength);
+    }
+  };
 
   const coreServices = servicesData.slice(0, 8);
   const featuredIndustries = industriesData.slice(0, 6);
@@ -487,110 +599,87 @@ export default function Home() {
       </section>
 
       {/* Technologies Offered Section (New) */}
-      <section className="py-20 px-6 md:px-12 bg-white">
+      <section className="py-20 px-6 md:px-12 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
             <div>
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">Biological Systems</span>
               <h2 className="text-3xl font-bold font-display text-slate-900 mt-2">Technologies Offered</h2>
             </div>
-            <p className="text-slate-500 text-xs md:text-sm max-w-md font-medium">
-              We integrate patent-driven, high-efficiency biological systems tailored for complex industrial streams and municipal load requirements.
-            </p>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <p className="text-slate-500 text-xs md:text-sm max-w-md font-medium">
+                We integrate patent-driven, high-efficiency biological systems tailored for complex industrial streams and municipal load requirements.
+              </p>
+              <div className="flex gap-2 shrink-0 self-end sm:self-center">
+                <button 
+                  onClick={prevTech} 
+                  className="w-10 h-10 rounded-full border border-slate-200/80 hover:border-primary/50 flex items-center justify-center hover:bg-primary/5 active:bg-primary/10 transition-all text-slate-600 hover:text-primary shadow-sm cursor-pointer"
+                  aria-label="Previous technologies"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button 
+                  onClick={nextTech} 
+                  className="w-10 h-10 rounded-full border border-slate-200/80 hover:border-primary/50 flex items-center justify-center hover:bg-primary/5 active:bg-primary/10 transition-all text-slate-600 hover:text-primary shadow-sm cursor-pointer"
+                  aria-label="Next technologies"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Tech 1 */}
-            <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
-              <div className="h-44 overflow-hidden relative">
-                <img
-                  src="/mbbr_media.png"
-                  alt="MBBR Technology"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                  Biofilm MBBR
-                </div>
-              </div>
-              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
-                <div className="flex flex-col gap-2">
-                  <h4 className="font-bold text-slate-900 text-sm font-display group-hover:text-primary transition-colors">
-                    MBBR (Moving Bed Bio Reactor)
-                  </h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
-                    Utilizes specialized floating plastic carrier media designed to maximize active surface area, allowing higher biological load treatment within compact reactor footprints.
-                  </p>
-                </div>
-                <Link
-                  to="/services"
-                  className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
+          <div 
+            className="overflow-hidden w-full relative"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={() => setIsHovered(true)}
+            onTouchEnd={() => setIsHovered(false)}
+          >
+            <div 
+              className={`flex ${isTransitioning ? 'transition-transform duration-500 ease-out' : ''} py-2`}
+              style={{ 
+                transform: `translateX(calc(-${currentTech} * (100% / ${visibleItems})))` 
+              }}
+              onTransitionEnd={handleTransitionEnd}
+            >
+              {loopedData.map((tech, idx) => (
+                <div 
+                  key={`${tech.id}-${idx}`} 
+                  style={{ width: `calc(100% / ${visibleItems})` }}
+                  className="px-3 shrink-0 flex-grow-0"
                 >
-                  <span>Technical Setup</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Tech 2 */}
-            <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
-              <div className="h-44 overflow-hidden relative">
-                <img
-                  src="/mbr_modules.png"
-                  alt="MBR Technology"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4 bg-secondary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                  Ultrafiltration MBR
+                  <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 h-[380px] flex flex-col group">
+                    <div className="h-44 overflow-hidden relative">
+                      <img
+                        src={tech.image}
+                        alt={tech.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                        {tech.tag}
+                      </div>
+                    </div>
+                    <div className="p-6 flex flex-col justify-between flex-grow gap-3">
+                      <div className="flex flex-col gap-1.5">
+                        <h4 className="font-bold text-slate-900 text-sm font-display group-hover:text-primary transition-colors line-clamp-1">
+                          {tech.title}
+                        </h4>
+                        <p className="text-[11px] text-slate-500 leading-relaxed font-medium line-clamp-4">
+                          {tech.description}
+                        </p>
+                      </div>
+                      <Link
+                        to="/services"
+                        className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-auto self-start"
+                      >
+                        <span>Technical Setup</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
-                <div className="flex flex-col gap-2">
-                  <h4 className="font-bold text-slate-900 text-sm font-display group-hover:text-primary transition-colors">
-                    MBR (Membrane Bio Reactor)
-                  </h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
-                    Combines conventional activated sludge processes with membrane ultrafiltration cassettes, producing suspended solid-free high-purity filtrate suitable for direct reuse.
-                  </p>
-                </div>
-                <Link
-                  to="/services"
-                  className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
-                >
-                  <span>Technical Setup</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Tech 3 */}
-            <div className="bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
-              <div className="h-44 overflow-hidden relative">
-                <img
-                  src="/sbr_decanter.png"
-                  alt="SBR Technology"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                  Batch Dosing SBR
-                </div>
-              </div>
-              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
-                <div className="flex flex-col gap-2">
-                  <h4 className="font-bold text-slate-900 text-sm font-display group-hover:text-primary transition-colors">
-                    SBR (Sequential Batch Reactor)
-                  </h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
-                    Runs equalization, aeration, settling, and clear decanting sequentially within a single basin structure, optimizing energy consumption and control flexibility.
-                  </p>
-                </div>
-                <Link
-                  to="/services"
-                  className="text-xs font-bold text-primary flex items-center gap-1.5 hover:text-secondary transition-colors mt-2"
-                >
-                  <span>Technical Setup</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-              </div>
+              ))}
             </div>
           </div>
         </div>
