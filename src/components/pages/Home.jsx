@@ -144,56 +144,55 @@ export default function Home() {
 
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg-base to-transparent pointer-events-none z-10" />
 
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6 relative z-10 w-full">
-          <motion.span 
-            className="text-xs font-semibold uppercase tracking-widest text-secondary bg-secondary/10 border border-secondary/20 px-3.5 py-1.5 rounded-full inline-block"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Water & Infrastructure Engineers
-          </motion.span>
-          
-          <motion.h1 
-            className="text-4xl md:text-6xl font-extrabold font-display leading-tight tracking-tight text-slate-900"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            Engineering Sustainable <br />
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Industrial Solutions
-            </span>
-          </motion.h1>
-
-          <motion.p 
-            className="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Innovative environmental engineering delivering Water Treatment, Wastewater Recycling, and Zero Liquid Discharge (ZLD) infrastructure solutions globally.
-          </motion.p>
-
-          <motion.div 
-            className="flex flex-wrap justify-center gap-4 mt-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <Link 
-              to="/services" 
-              className="gradient-bg text-white font-semibold text-xs px-6 py-3.5 rounded-xl shadow-lg shadow-primary/25 hover:brightness-110 transition-all flex items-center gap-1.5"
+        <div className="max-w-7xl mx-auto w-full relative z-10">
+          <div className="max-w-3xl flex flex-col gap-6 items-start text-left">
+            <motion.span 
+              className="text-xs font-semibold uppercase tracking-widest text-secondary bg-secondary/10 border border-secondary/20 px-3.5 py-1.5 rounded-full inline-block self-start"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              Explore Services <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link 
-              to="/contact" 
-              className="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs px-6 py-3.5 rounded-xl transition-colors flex items-center gap-1.5 shadow-sm"
+              Water & Infrastructure Engineers
+            </motion.span>
+            
+            <motion.h1 
+              className="text-4xl md:text-6xl font-extrabold font-display leading-tight tracking-tight text-slate-900"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Contact Us
-            </Link>
-          </motion.div>
+              Engineering Sustainable <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Industrial Solutions</span>
+            </motion.h1>
+
+            <motion.p 
+              className="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Innovative environmental engineering delivering Water Treatment, Wastewater Recycling, and Zero Liquid Discharge (ZLD) infrastructure solutions globally.
+            </motion.p>
+
+            <motion.div 
+              className="flex flex-wrap gap-4 mt-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <Link 
+                to="/services" 
+                className="gradient-bg text-white font-semibold text-xs px-6 py-3.5 rounded-xl shadow-lg shadow-primary/25 hover:brightness-110 transition-all flex items-center gap-1.5"
+              >
+                Explore Services <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link 
+                to="/contact" 
+                className="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs px-6 py-3.5 rounded-xl transition-colors flex items-center gap-1.5 shadow-sm"
+              >
+                Contact Us
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
 
