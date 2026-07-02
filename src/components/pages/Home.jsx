@@ -104,6 +104,12 @@ export default function Home() {
         {/* Background Grid Decoration */}
         <div className="absolute inset-0 bg-[radial-gradient(rgba(11,94,215,0.06)_1.5px,transparent_1.5px)] [background-size:32px_32px] opacity-100 z-0" />
         
+        {/* Background Project Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-45 z-0"
+          style={{ backgroundImage: "url('/hero_water_bg.png')" }}
+        />
+        
         {/* Subtle Light Gradients Blobs */}
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] pointer-events-none z-0" />
         <div className="absolute -bottom-45 -right-45 w-[700px] h-[700px] rounded-full bg-secondary/5 blur-[140px] pointer-events-none z-0" />
