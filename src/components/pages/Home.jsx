@@ -233,112 +233,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Capabilities Showcase (Reference Theme Section 3) */}
-      <section className="py-20 px-6 md:px-12 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-semibold uppercase tracking-wider text-primary">Specialized Capabilities</span>
-            <h2 className="text-3xl font-bold font-display text-slate-900 mt-2">
-              We Engineer Wastewater Solutions for the Future
-            </h2>
-            <p className="text-slate-500 text-xs md:text-sm mt-3 leading-relaxed">
-              Transforming complex sewage and toxic industrial effluents into high-purity reusable water resources using certified processes.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div className="bg-white rounded-3xl overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
-              <div className="h-48 overflow-hidden relative">
-                <img
-                  src="/wastewater_plant.png"
-                  alt="Sewage Treatment Plant"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                  STP Division
-                </div>
-              </div>
-              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-slate-900 text-base font-display group-hover:text-primary transition-colors">
-                    Sewage Treatment Plants
-                  </h3>
-                  <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                    Engineered municipal and industrial STPs utilizing high-recovery MBR, SBR, and MBBR reactor technologies. Ensuring compliance with strict pollution boards.
-                  </p>
-                </div>
-                <Link
-                  to="/services"
-                  className="text-xs font-bold text-primary hover:text-secondary transition-colors inline-flex items-center gap-1 self-start mt-2"
-                >
-                  <span>Learn More</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white rounded-3xl overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
-              <div className="h-48 overflow-hidden relative">
-                <img
-                  src="/filtration_skid.png"
-                  alt="Zero Liquid Discharge ETP"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4 bg-secondary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                  ZLD / RO Division
-                </div>
-              </div>
-              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-slate-900 text-base font-display group-hover:text-primary transition-colors">
-                    Zero Liquid Discharge
-                  </h3>
-                  <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                    Advanced closed-loop effluent recycling setups integrating physico-chemical dosing, high-rejection RO membranes, and vacuum crystallizers.
-                  </p>
-                </div>
-                <Link
-                  to="/services"
-                  className="text-xs font-bold text-primary hover:text-secondary transition-colors inline-flex items-center gap-1 self-start mt-2"
-                >
-                  <span>Learn More</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Card 3 - Dark Theme Card for contrast */}
-            <div className="bg-slate-900 text-white rounded-3xl p-8 border border-slate-800 shadow-lg flex flex-col justify-between relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-
-              <div className="flex flex-col gap-4">
-                <div className="w-10 h-10 rounded-xl bg-primary/20 text-primary-light flex items-center justify-center">
-                  <Shield className="w-5 h-5" />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-white text-base font-display">
-                    ASME Quality & Welding Standards
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    We fabricate carbon vessels, media filters, and skid steel frames under weather-controlled conditions inside our Baddi works. Every system undergoes hydro-tests at 1.5x working pressure before release.
-                  </p>
-                </div>
-              </div>
-
-              <Link
-                to="/about"
-                className="bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs px-5 py-3 rounded-xl transition-all self-start flex items-center gap-1.5 shadow-md mt-6"
-              >
-                <span>View Quality Audits</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Technologies Offered Section (New) */}
       <section className="py-20 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -444,6 +338,112 @@ export default function Home() {
                   <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Capabilities Showcase (Reference Theme Section 3) */}
+      <section className="py-20 px-6 md:px-12 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-semibold uppercase tracking-wider text-primary">Specialized Capabilities</span>
+            <h2 className="text-3xl font-bold font-display text-slate-900 mt-2">
+              We Engineer Wastewater Solutions for the Future
+            </h2>
+            <p className="text-slate-500 text-xs md:text-sm mt-3 leading-relaxed">
+              Transforming complex sewage and toxic industrial effluents into high-purity reusable water resources using certified processes.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="bg-white rounded-3xl overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+              <div className="h-48 overflow-hidden relative">
+                <img
+                  src="/wastewater_plant.png"
+                  alt="Sewage Treatment Plant"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  STP Division
+                </div>
+              </div>
+              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-bold text-slate-900 text-base font-display group-hover:text-primary transition-colors">
+                    Sewage Treatment Plants
+                  </h3>
+                  <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                    Engineered municipal and industrial STPs utilizing high-recovery MBR, SBR, and MBBR reactor technologies. Ensuring compliance with strict pollution boards.
+                  </p>
+                </div>
+                <Link
+                  to="/services"
+                  className="text-xs font-bold text-primary hover:text-secondary transition-colors inline-flex items-center gap-1 self-start mt-2"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-white rounded-3xl overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+              <div className="h-48 overflow-hidden relative">
+                <img
+                  src="/filtration_skid.png"
+                  alt="Zero Liquid Discharge ETP"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4 bg-secondary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  ZLD / RO Division
+                </div>
+              </div>
+              <div className="p-6 flex flex-col justify-between flex-grow gap-4">
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-bold text-slate-900 text-base font-display group-hover:text-primary transition-colors">
+                    Zero Liquid Discharge
+                  </h3>
+                  <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                    Advanced closed-loop effluent recycling setups integrating physico-chemical dosing, high-rejection RO membranes, and vacuum crystallizers.
+                  </p>
+                </div>
+                <Link
+                  to="/services"
+                  className="text-xs font-bold text-primary hover:text-secondary transition-colors inline-flex items-center gap-1 self-start mt-2"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Card 3 - Dark Theme Card for contrast */}
+            <div className="bg-slate-900 text-white rounded-3xl p-8 border border-slate-800 shadow-lg flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="flex flex-col gap-4">
+                <div className="w-10 h-10 rounded-xl bg-primary/20 text-primary-light flex items-center justify-center">
+                  <Shield className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-bold text-white text-base font-display">
+                    ASME Quality & Welding Standards
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    We fabricate carbon vessels, media filters, and skid steel frames under weather-controlled conditions inside our Baddi works. Every system undergoes hydro-tests at 1.5x working pressure before release.
+                  </p>
+                </div>
+              </div>
+
+              <Link
+                to="/about"
+                className="bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs px-5 py-3 rounded-xl transition-all self-start flex items-center gap-1.5 shadow-md mt-6"
+              >
+                <span>View Quality Audits</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </div>
         </div>
