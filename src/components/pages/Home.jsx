@@ -28,7 +28,9 @@ const serviceImages = {
   "water-treatment-plant": "/filtration_skid.png",
   "zero-liquid-discharge": "/fabrication_banner.png",
   "reverse-osmosis": "/sbr_decanter.png",
-  "softening-plant": "/mbbr_media.png"
+  "softening-plant": "/mbbr_media.png",
+  "demineralization-plant": "/demineralization_plant.png",
+  "ultra-filtration": "/ultrafiltration_plant.png"
 };
 
 
@@ -90,7 +92,7 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  const coreServices = servicesData.slice(0, 6);
+  const coreServices = servicesData.slice(0, 8);
   const featuredIndustries = industriesData.slice(0, 6);
   const recentBlogs = blogsData.slice(0, 3);
 
