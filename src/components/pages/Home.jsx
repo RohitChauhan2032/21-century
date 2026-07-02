@@ -27,11 +27,10 @@ const serviceImages = {
   "sewage-treatment-plant": "/mbr_modules.png",
   "water-treatment-plant": "/filtration_skid.png",
   "zero-liquid-discharge": "/fabrication_banner.png",
-  "reverse-osmosis": "/filtration_skid.png",
-  "softening-plant": "/filtration_skid.png",
-  "demineralization-plant": "/sbr_decanter.png",
-  "ultra-filtration": "/mbbr_media.png"
+  "reverse-osmosis": "/sbr_decanter.png",
+  "softening-plant": "/mbbr_media.png"
 };
+
 
 
 import { servicesData } from '../../data/servicesData';
@@ -91,7 +90,7 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  const coreServices = servicesData.slice(0, 8);
+  const coreServices = servicesData.slice(0, 6);
   const featuredIndustries = industriesData.slice(0, 6);
   const recentBlogs = blogsData.slice(0, 3);
 
