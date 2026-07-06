@@ -36,15 +36,41 @@ const serviceImages = {
 import banner1 from '../../banner/3d-illustration-modern-sewage-treatment-plant-water-purification.jpg';
 import banner2 from '../../banner/industrial-tanks-silos-stand-majestically-against-sky-filled-with-dramatic-clouds-reflecting-modern-infrastructure-technology-involved-storage-processing.jpg';
 import banner3 from '../../banner/industrial-wastewater-treatment-plant-purifying-water-before-it-is-discharged.jpg';
-import banner4 from '../../banner/aerial-view-big-sustainable-electric-power-plant-with-many-rows-solar-photovoltaic-panels-producing-clean-electrical-energy-renewable-electricity-with-zero-emission-concept.jpg';
+import banner4 from '../../banner/solar-power-plant.jpg';
 
-const bannerImages = [banner1, banner2, banner3, banner4];
-
-const bannerStyles = [
-  { opacity: 0.75, filter: 'brightness(1.15)' },
-  { opacity: 0.8, filter: 'brightness(1.25)' },
-  { opacity: 0.75, filter: 'brightness(1.15)' },
-  { opacity: 0.85, filter: 'brightness(1.3) contrast(1.05)' }
+const bannerData = [
+  {
+    image: banner1,
+    style: { opacity: 0.75, filter: 'brightness(1.15)' },
+    badge: "Water & Wastewater Specialists",
+    titleLead: "Advanced Sewage & ",
+    titleSpan: "Water Purification",
+    description: "Providing state-of-the-art MBR, MBBR, and SBR biological wastewater treatment systems designed for ultra-pure output and long-term environmental compliance."
+  },
+  {
+    image: banner2,
+    style: { opacity: 0.8, filter: 'brightness(1.25)' },
+    badge: "Heavy Industrial Infrastructure",
+    titleLead: "Engineering Sustainable ",
+    titleSpan: "Industrial Solutions",
+    description: "Innovative environmental engineering delivering Water Treatment, Wastewater Recycling, and Zero Liquid Discharge (ZLD) infrastructure solutions globally."
+  },
+  {
+    image: banner3,
+    style: { opacity: 0.75, filter: 'brightness(1.15)' },
+    badge: "Zero Liquid Discharge (ZLD)",
+    titleLead: "Industrial Effluent & ",
+    titleSpan: "Zero Liquid Discharge",
+    description: "Maximizing water recycling with high-recovery RO, MVR evaporators, and crystallizers to achieve complete Zero Liquid Discharge for heavy industries."
+  },
+  {
+    image: banner4,
+    style: { opacity: 0.85, filter: 'brightness(1.3) contrast(1.05)' },
+    badge: "Green Energy & Sustainability",
+    titleLead: "Renewable Energy & ",
+    titleSpan: "Sustainable Power",
+    description: "Integrating clean solar energy, low-emission power systems, and environmental audits to help industrial leaders transition to carbon-neutral operations."
+  }
 ];
 
 const technologiesData = [
@@ -158,7 +184,7 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentBanner((prev) => (prev + 1) % bannerImages.length);
+      setCurrentBanner((prev) => (prev + 1) % bannerData.length);
     }, 4000);
     return () => clearInterval(timer);
   }, []);
@@ -241,18 +267,21 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(rgba(11,94,215,0.06)_1.5px,transparent_1.5px)] [background-size:32px_32px] opacity-100 z-0" />
         
         {/* Background Image Slider */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-slate-950">
           <AnimatePresence>
             <motion.div
               key={currentBanner}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: bannerStyles[currentBanner].opacity }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              initial={{ opacity: 0, scale: 1.08 }}
+              animate={{ 
+                opacity: bannerData[currentBanner].style.opacity,
+                scale: 1 
+              }}
+              exit={{ opacity: 0, scale: 1.02 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{ 
-                backgroundImage: `url(${bannerImages[currentBanner]})`,
-                filter: bannerStyles[currentBanner].filter
+                backgroundImage: `url(${bannerData[currentBanner].image})`,
+                filter: bannerData[currentBanner].style.filter
               }}
             />
           </AnimatePresence>
@@ -309,30 +338,36 @@ export default function Home() {
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="max-w-3xl flex flex-col gap-6 items-start text-left">
             <motion.span 
+              key={`badge-${currentBanner}`}
               className="text-xs font-semibold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20 px-3.5 py-1.5 rounded-full inline-block self-start"
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 1.0, ease: "easeOut" }}
             >
-              Water & Infrastructure Engineers
+              {bannerData[currentBanner].badge}
             </motion.span>
             
             <motion.h1 
+              key={`title-${currentBanner}`}
               className="text-4xl md:text-6xl font-extrabold font-display leading-tight tracking-tight text-slate-900"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 1.0, ease: "easeOut", delay: 0.1 }}
             >
-              Engineering Sustainable <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Industrial Solutions</span>
+              {bannerData[currentBanner].titleLead}
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                {bannerData[currentBanner].titleSpan}
+              </span>
             </motion.h1>
 
             <motion.p 
+              key={`desc-${currentBanner}`}
               className="text-slate-700 text-sm md:text-base leading-relaxed max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 1.0, ease: "easeOut", delay: 0.2 }}
             >
-              Innovative environmental engineering delivering Water Treatment, Wastewater Recycling, and Zero Liquid Discharge (ZLD) infrastructure solutions globally.
+              {bannerData[currentBanner].description}
             </motion.p>
 
             <motion.div 
@@ -360,35 +395,62 @@ export default function Home() {
 
       {/* About snippet Section */}
       <section className="py-20 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Graphic/Accreditations Box */}
-          <div className="lg:col-span-5 bg-white border border-border-base rounded-3xl p-8 shadow-sm flex flex-col gap-6 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-primary to-secondary" />
-            <h3 className="font-bold text-slate-900 text-lg font-display">Sizing and Process Validation</h3>
-            <p className="text-xs text-slate-500 leading-relaxed">
-              We design water systems based on actual laboratory test parameters. Our chemical testing division in Baddi tests chemical indices of sample effluents before our engineers size columns or configure membranes.
-            </p>
-            <div className="flex gap-4 border-t pt-4">
-              <span className="text-[10px] font-bold bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg border">ISO 9001 Certified</span>
-              <span className="text-[10px] font-bold bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg border">ASME Vessel Codes</span>
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+          {/* Project Image Column */}
+          <div className="lg:col-span-5 relative group overflow-hidden rounded-3xl shadow-md border border-slate-100 min-h-[350px] lg:min-h-full">
+            <img 
+              src="/about_project.png" 
+              alt="21st Century Enviro Engineers Project" 
+              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent pointer-events-none" />
           </div>
 
-          {/* About Text info */}
-          <div className="lg:col-span-7 flex flex-col gap-5">
-            <span className="text-xs font-semibold uppercase tracking-wider text-primary">About Company</span>
+          {/* About Text Info (Image 1 Style) */}
+          <div className="lg:col-span-7 flex flex-col gap-5 justify-center">
+            <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+              About Company
+            </span>
             <h2 className="text-3xl font-bold font-display text-slate-900 leading-tight">
-              25 Years of Engineering Trust in Water & Environmental Systems
+              WELCOME TO 21ST CENTURY ENVIRO ENGINEERS PVT. LTD.
             </h2>
             <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-              At 21st Century Enviro Engineers, we construct utility and effluent networks for heavy industries, urban hubs, and residential zones. From initial hydrological surveys and detailed P&ID drafting to final site stabilization, we offer single-point EPC turnkey execution.
+              21st CENTURY ENVIRO ENGINEERS PVT. LTD. is a Company dealing in the field of Environmental Engineering related activities. We are Registered Environmental Consultants of Pollution Control Board to Supply ETP's, STP's, APCD's, Incinerators, Water Treatment Plants, Reverse Osmosis, Solid Waste Management and Rain Water Harvesting and to carry out EIA Studies. The Directors of the company are young Technocrats having versatile experience in this field.
             </p>
+
+            {/* Checklist */}
+            <div className="flex flex-col gap-4 my-2">
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+                  With More Than 20 Years Of Experience, We Are One Of The Leading Manufacturers And Turnkey Solution Providers For Wastewater Treatment And Solidwaste Management.
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+                  More Than 500 Installations Globally.
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+                  More Than 200 Employees.
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+                  We Offer One Of The Widest Range Of Technologies In Industries.
+                </p>
+              </div>
+            </div>
+
             <Link
               to="/about"
-              className="text-xs font-bold text-primary flex items-center gap-1 hover:text-secondary transition-colors"
+              className="gradient-bg text-white font-bold text-xs uppercase px-8 py-3.5 rounded-xl shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all self-start inline-block"
             >
-              <span>Learn Corporate History</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              Read More
             </Link>
           </div>
         </div>
